@@ -51,10 +51,10 @@ Run either engine. It will execute for exactly **5 seconds**, capturing real-tim
 
 ## 4. Derive the Cryptographic Key
 
-The raw binary stream is mathematically compressed into a perfect **256-bit (64-character) symmetric key** using SHA-256.
+The raw binary stream is compressed using SHA-256 to derive a fixed-size 256-bit cryptographic key.
 
 ```bash
-sha256sum raw_chaos.key
+sha256sum raw_chaos.key | awk '{print $1}' > master_aes.key                        
 ```
 
 ---
@@ -77,7 +77,7 @@ Pipe the 256-bit hardware key directly into OpenSSL to lock the text file.
 openssl enc -aes-256-cbc -pbkdf2 \
 -in secret_message.txt \
 -out locked.enc \
--pass pass:$(cat raw_chaos.key)
+-pass file:master_aes.key
 ```
 
 The file **`locked.enc`** is now fully encrypted and unreadable.
@@ -92,7 +92,7 @@ Reverse the pipeline using the same symmetric key to unlock the file and reveal 
 openssl enc -d -aes-256-cbc -pbkdf2 \
 -in locked.enc \
 -out unlocked.txt \
--pass pass:$(cat raw_chaos.key)
+-pass file:master_aes.key
 
 cat unlocked.txt
 ```
@@ -104,6 +104,7 @@ This is a highly classified hardware payload.
 ```
 
 ---
+
 
 # Project Flow
 
@@ -137,6 +138,7 @@ Kernel Scheduling Jitter
 | `secret_message.txt` | Test plaintext payload |
 | `locked.enc` | AES-256 encrypted output |
 | `unlocked.txt` | Verified decrypted payload |
+| `master_aes.key` | SHA-256 derived symmetric key |
 
 ---
 
