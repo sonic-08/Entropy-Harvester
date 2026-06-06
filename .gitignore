@@ -1,0 +1,122 @@
+# ==================================================
+# C/C++ compiled files
+# ==================================================
+
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.a
+*.lib
+
+*.exe
+*.out
+
+
+# ==================================================
+# Entropy Harvester compiled binaries
+# ==================================================
+
+harvester_hw
+harvester_os
+
+
+# ==================================================
+# Build directories
+# ==================================================
+
+build/
+bin/
+obj/
+cmake-build-*/
+
+
+# ==================================================
+# CMake generated files
+# ==================================================
+
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+
+# ==================================================
+# Generated entropy / cryptographic material
+# ==================================================
+
+# Raw generated entropy
+raw_chaos.key
+*.key
+
+# AES encrypted output
+locked.enc
+*.enc
+
+# Certificates and private keys
+*.pem
+*.crt
+*.private
+
+
+# ==================================================
+# Test generated files
+# ==================================================
+
+secret_message.txt
+unlocked.txt
+
+
+# ==================================================
+# Debug / crash files
+# ==================================================
+
+*.log
+
+# macOS debug symbols
+*.dSYM/
+
+# Windows crash dumps
+*.stackdump
+
+# Linux core dumps
+core
+core.*
+
+# GCC precompiled headers
+*.gch
+
+
+# ==================================================
+# Environment secrets
+# ==================================================
+
+.env
+.env.*
+
+
+# ==================================================
+# Editor / IDE settings
+# ==================================================
+
+# VS Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Vim swap files
+*.swp
+*.swo
+
+
+# ==================================================
+# Operating system junk
+# ==================================================
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
